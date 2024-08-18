@@ -4,10 +4,9 @@ import { useLocalSearchParams, useNavigation } from 'expo-router'
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../config/FirebaseConfig';
 import ImageView from "react-native-image-viewing";
-import { images } from '../../constants/Data';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-const ListAllImages = ({ data }) => {
+const ListAllImages = () => {
     const navigation = useNavigation();
     const { AllImages } = useLocalSearchParams();
     const [imageList, setImagesList] = useState([]);

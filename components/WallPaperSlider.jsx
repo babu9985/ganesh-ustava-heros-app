@@ -1,6 +1,5 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'expo-router';
 import ImageCard from './ImageCard';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../config/FirebaseConfig';
@@ -11,7 +10,6 @@ const WallPaperSlider = () => {
     const [imageList, setImagesList] = useState([]);
     const [loading, setLoading] = useState(false);
     const name = "Lord Ganesh's Wallpapers";
-    const router = useRouter();
 
     useEffect(() => {
         getImages();
