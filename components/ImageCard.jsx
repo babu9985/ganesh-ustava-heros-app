@@ -12,7 +12,7 @@ export default function ImageCard({ imageList,name }) {
                     <Text style={{ fontFamily: 'regular', fontSize: 13, color: '#9eecf6', textAlign: 'center', paddingHorizontal: 10, marginTop: 3, textDecorationLine: 'underline' }}>View All</Text>
                 </TouchableOpacity>
             </View>
-            <FlatList initialNumToRender={3} showsHorizontalScrollIndicator={false} maxToRenderPerBatch={3} horizontal={true} windowSize={10} data={imageList.slice(0, 5)} renderItem={({ item }) => (
+            <FlatList initialNumToRender={3} showsHorizontalScrollIndicator={false} maxToRenderPerBatch={3} horizontal={true} windowSize={10} data={imageList.slice(0, 4)} renderItem={({ item }) => (
                 <TouchableOpacity>
                     <Image source={{ uri: item.uri }} style={styles.img}></Image>
                 </TouchableOpacity>
