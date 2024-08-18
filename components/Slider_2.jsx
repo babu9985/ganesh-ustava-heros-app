@@ -1,14 +1,16 @@
-import { ActivityIndicator, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
 import ImageCard from './ImageCard'
-import { collection, getDocs, limit, query } from 'firebase/firestore'
-import { db } from '../config/FirebaseConfig'
+import { useState } from 'react';
 import { useRouter } from 'expo-router';
+import { collection, getDocs, query } from 'firebase/firestore';
+import { db } from '../config/FirebaseConfig';
 import Spinner from 'react-native-loading-spinner-overlay';
-const Slider_1 = () => {
+
+const Slider_2 = () => {
     const [imageList, setImagesList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const name = "Ganesh Nimazzanam-2019";
+    const name = "Ganesh Nimazzanam-2023"
     const router = useRouter();
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const Slider_1 = () => {
     const getImages = async () => {
         setImagesList([]);
         setLoading(true)
-        const qry = query(collection(db, 'Ganesh_ustava_heros_03-09-2019'));
+        const qry = query(collection(db, 'Ganesh ustava heros 2023'));
         const queryResponse = await getDocs(qry);
         queryResponse.forEach((data) => {
             setImagesList((prev) => [...prev, data.data()]);
@@ -36,7 +38,6 @@ const Slider_1 = () => {
             </View>
         )
     }
-
     return (
         <View style={{ flex: 1 }}>
             <ImageCard imageList={imageList} name={name}></ImageCard>
@@ -44,8 +45,6 @@ const Slider_1 = () => {
     )
 }
 
-export default Slider_1
+export default Slider_2
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({})

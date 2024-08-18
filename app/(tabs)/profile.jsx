@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import * as ImagePicker from 'expo-image-picker';
@@ -16,7 +16,7 @@ const Profile = () => {
     const [imageList, setImageList] = useState([]);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    // const [text, setText] = useState('Uploading, Pls wait....');
+    const [text, setText] = useState('');
 
     const onImageUpload = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -25,6 +25,7 @@ const Profile = () => {
             // aspect: [4, 3],
             quality: 1,
             allowsMultipleSelection: true,
+            legacy: true,
         });
 
         if (!result.canceled) {
@@ -40,13 +41,13 @@ const Profile = () => {
         const downloadURLs = await Promise.all(uploadPromises);
         setLoading(false);
         // console.log('Uploaded image URLs:', downloadURLs);
-        downloadURLs.map((image)=> saveImageData(image));
+        downloadURLs.map((image) => saveImageData(image));
         router.push('/home')
     }
 
     const saveImageData = async (url) => {
         setLoading(true)
-        await setDoc(doc(db, 'Ganesh_ustava_heros_1', uuidv4()), {
+        await setDoc(doc(db,`${text}`, uuidv4()), {
             uri: url,
         });
         setLoading(false)
@@ -61,7 +62,7 @@ const Profile = () => {
             const blob = await response.blob();
 
             // Reference to the Firebase storage location
-            const storageRef = ref(storage, `Ganesh-ustava-heros/${fileName}`);
+            const storageRef = ref(storage, `${text}/${fileName}`);
             // Upload the file
             await uploadBytes(storageRef, blob);
             // Get the download URL
@@ -79,7 +80,7 @@ const Profile = () => {
                 <Spinner
                     visible={loading}
                     textContent="Uploading, Pls wait...."
-                    textStyle={{color :'#fff'}}
+                    textStyle={{ color: '#fff' }}
                     size={50} animation="fade" overlayColor="rgba(0,0,0,0.5)" color="#3498db"
                 />
             </View>
@@ -88,7 +89,10 @@ const Profile = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={{ fontFamily: 'bold', fontSize: 25, color: '#265687',marginBottom : 20 }}>Select Images to Upload</Text>
+            <SafeAreaView style={{width:'100%'}}>
+                <TextInput style={styles.input} placeholder='Enter File Name' onChangeText={setText}></TextInput>
+            </SafeAreaView>
+            <Text style={{ fontFamily: 'bold', fontSize: 25, color: '#265687', marginBottom: 20 }}>Select Images to Upload</Text>
             <TouchableOpacity onPress={() => onImageUpload()}>
                 <FontAwesome6 name="camera-retro" size={75} color="#265687" />
             </TouchableOpacity>
@@ -115,5 +119,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 100,
+    },
+    input: {
+        height: 40,
+        borderColor: 'grey',
+        borderWidth: 1,
+        padding: 10,
+       margin : 15
     }
 })

@@ -1,23 +1,23 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import {ScrollView, StyleSheet} from 'react-native'
+import React from 'react'
 import Header from '../../components/Header'
 import Slider_1 from '../../components/Slider_1'
-import { getDownloadURL, ref } from 'firebase/storage'
-import { db, storage } from '../../config/FirebaseConfig'
-import { getAllItems, getItem } from '../../store/AsyncStorage'
-import { collection, getDocs, query } from 'firebase/firestore'
+import WallPaperSlider from '../../components/WallPaperSlider'
+import Slider_2 from '../../components/Slider_2'
+import Slider_3 from '../../components/Slider_3'
+import Slider_4 from '../../components/Slider_4'
 
 const Home = () => {
 
-    
 
     return (
-        <ScrollView style={{ backgroundColor: '#265687', flex: 1}}>
+        <ScrollView style={{ backgroundColor: '#265687', flex: 1 }}>
             <Header></Header>
+            <WallPaperSlider></WallPaperSlider>
+            <Slider_4></Slider_4>
             <Slider_1></Slider_1>
-            {/* <FlatList data={imageList} renderItem={({ item ,index}) => (
-                <Slider_1 item={item} key={index}></Slider_1>
-            )}></FlatList> */}
+            <Slider_3></Slider_3>
+            <Slider_2></Slider_2>
         </ScrollView>
     )
 }

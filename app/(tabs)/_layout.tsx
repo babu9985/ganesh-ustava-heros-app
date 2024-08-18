@@ -16,14 +16,14 @@ export default function TabLayout() {
         tabBarLabel :'Home',
         tabBarIcon :({color})=><FontAwesome5 name="home" size={24} color={color} />
       }}></Tabs.Screen>
-      <Tabs.Screen name='explore' options={{
-        tabBarLabel :'Explore',
-        tabBarIcon :({color})=><Ionicons name="list-circle" size={24} color={color} />
+      {/* <Tabs.Screen name='mediaplayer' options={{
+        tabBarLabel :'Songs',
+        tabBarIcon :({color})=><FontAwesome5 name="headphones" size={24} color={color} />
       }}></Tabs.Screen>
       <Tabs.Screen name='profile' options={{
         tabBarLabel :'Profile',
         tabBarIcon :({color})=><FontAwesome name="user" size={24} color={color} />
-      }}></Tabs.Screen>
+      }}></Tabs.Screen> */}
     </Tabs>
   );
 }
