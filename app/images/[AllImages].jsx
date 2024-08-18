@@ -35,7 +35,7 @@ const ListAllImages = ({ data }) => {
             qry = query(collection(db, 'Ganesh ustava heros 2023'));
         } else if (AllImages === 'Ganesh Nimazzanam-2019') {
             qry = query(collection(db, 'Ganesh_ustava_heros_03-09-2019'));
-        } else if (AllImages === 'Ganesh Nimazzanam-2019') {
+        } else if (AllImages === 'Ganesh Nimazzanam-2020') {
             qry = query(collection(db, 'Ganesh ustava heros 2020'));
         }else if (AllImages === 'Ganesh Nimazzanam-2018') {
             qry = query(collection(db, 'Ganesh ustava heros 2018'));
@@ -48,6 +48,9 @@ const ListAllImages = ({ data }) => {
         })
         setLoading(false);
     }
+
+    console.log(AllImages);
+    
 
     if (loading) {
         return (
